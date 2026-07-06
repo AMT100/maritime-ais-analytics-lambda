@@ -37,8 +37,7 @@ def on_message(ws, message):
             final_path = f"{OUTPUT_DIR}/ais_{file_id}.json"
             temp_path = f"{final_path}.tmp"
             
-            # Escribir un archivo temporal y luego renombrarlo para que Spark no intente 
-            # leer el archivo mientras Python todavía lo está escribiendo.
+            # Escribir un archivo temporal y luego renombrarlo para que Spark no intente leer el archivo mientras Python todavía lo está escribiendo.
             with open(temp_path, "w") as f:
                 f.write(json.dumps(spark_record) + "\n")
             
@@ -61,7 +60,7 @@ def on_open(ws):
     print("[✓] Conectado a AISStream.io.")
     print("[*] Suscribiéndose al cuadrante del Estrecho de Gibraltar...")
     
-    # Payload de suscripción. Limitamos zona a (LatMin, LonMin, LatMax, LonMax)
+    # Payload de suscripción. Limitar la zona a (LatMin, LonMin, LatMax, LonMax)
     subscribe_message = {
         "APIKey": API_KEY,
         "BoundingBoxes": [[[35.8, -5.8], [36.2, -5.2]]],
